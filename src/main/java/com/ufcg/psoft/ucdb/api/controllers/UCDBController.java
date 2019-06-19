@@ -3,16 +3,18 @@ package com.ufcg.psoft.ucdb.api.controllers;
 import com.ufcg.psoft.ucdb.core.exception.UserRegisteredException;
 import com.ufcg.psoft.ucdb.core.models.User;
 import com.ufcg.psoft.ucdb.api.services.UserService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
 
-@RestController(value = "/v1")
+@RestController
+@RequestMapping("/v1")
 public class UCDBController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UCDBController.class);
 
     @Autowired
     UserService userService;
@@ -20,11 +22,28 @@ public class UCDBController {
     @PostMapping("/user")
     @ResponseBody
     public ResponseEntity<?> addUser(@RequestBody User user){
+        LOGGER.info("Adding new user [" + user.getEmail() + "]");
         try {
             userService.addUser(user);
-            return new ResponseEntity<>("Hello World!", HttpStatus.OK);
+            return new ResponseEntity<>("User [" + user.getEmail() + "] added successfully", HttpStatus.OK);
         } catch (UserRegisteredException e){
-            return new ResponseEntity<>("Hello World!", HttpStatus.BAD_REQUEST);
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/user/{email}")
+    @ResponseBody
+    public ResponseEntity<?> addUser(@PathVariable String email){
+        LOGGER.info("Getting user with email [" + email + "].");
+        User user = userService.getUser(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/version")
+    @ResponseBody
+    public ResponseEntity<?> getVersion(){
+        return new ResponseEntity<>("0.0.1", HttpStatus.OK);
     }
 }
