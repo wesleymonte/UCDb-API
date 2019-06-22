@@ -3,18 +3,17 @@ package com.ufcg.psoft.ucdb.api.controllers;
 import com.ufcg.psoft.ucdb.core.exception.UserRegisteredException;
 import com.ufcg.psoft.ucdb.core.models.User;
 import com.ufcg.psoft.ucdb.api.services.UserService;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-
 @RestController
 @RequestMapping("/v1")
 public class UCDBController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UCDBController.class);
+    private static final Logger LOGGER = LogManager.getLogger(UCDBController.class);
 
     @Autowired
     UserService userService;
