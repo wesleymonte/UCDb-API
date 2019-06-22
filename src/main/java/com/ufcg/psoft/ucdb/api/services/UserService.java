@@ -7,6 +7,7 @@ import com.ufcg.psoft.ucdb.api.repositories.UserRepository;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class UserService {
     private UcdbController ucdbController;
 
     @Autowired
+    @Lazy
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void addUser(User user){
