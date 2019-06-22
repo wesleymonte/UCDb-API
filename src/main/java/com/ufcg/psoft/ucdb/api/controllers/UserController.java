@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1")
-public class UCDBController {
+public class UserController {
 
-    private static final Logger LOGGER = LogManager.getLogger(UCDBController.class);
+    private static final Logger LOGGER = LogManager.getLogger(UserController.class);
 
     @Autowired
     UserService userService;

@@ -1,6 +1,6 @@
 package com.ufcg.psoft.ucdb.api.services;
 
-import com.ufcg.psoft.ucdb.api.controllers.UCDBController;
+import com.ufcg.psoft.ucdb.core.UcdbController;
 import com.ufcg.psoft.ucdb.core.exception.UserRegisteredException;
 import com.ufcg.psoft.ucdb.core.models.User;
 import com.ufcg.psoft.ucdb.api.repositories.UserRepository;
@@ -19,9 +19,13 @@ public class UserService {
     @Autowired
     UserRepository repository;
 
+    @Autowired
+    UcdbController ucdbController;
+
     public void addUser(User user){
         if(valitadeUser(user)){
             repository.save(user);
+            sendEmail(user.getEmail());
             LOGGER.info("Added user [" + user.getEmail() + "]");
         } else {
             LOGGER.error("User [" + user.getEmail() + "] already registered");
@@ -41,5 +45,9 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    private void sendEmail(String email){
+        this.ucdbController.sendRegistrationEmail(email);
     }
 }
