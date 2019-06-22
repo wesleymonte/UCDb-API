@@ -7,6 +7,7 @@ import com.ufcg.psoft.ucdb.api.repositories.UserRepository;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,14 +18,19 @@ public class UserService {
     private static final Logger LOGGER = LogManager.getLogger(UserService.class);
 
     @Autowired
-    UserRepository repository;
+    private UserRepository repository;
 
     @Autowired
-    UcdbController ucdbController;
+    private UcdbController ucdbController;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void addUser(User user){
         if(valitadeUser(user)){
-            repository.save(user);
+            String psEncoded = bCryptPasswordEncoder.encode(user.getPassword());
+            User userEncoded = new User(user.getEmail(), user.getFirstName(), user.getLastName(), psEncoded);
+            repository.save(userEncoded);
             sendEmail(user.getEmail());
             LOGGER.info("Added user [" + user.getEmail() + "]");
         } else {
