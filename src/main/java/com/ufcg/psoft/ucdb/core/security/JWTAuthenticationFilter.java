@@ -1,5 +1,6 @@
 package com.ufcg.psoft.ucdb.core.security;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufcg.psoft.ucdb.core.dto.CredentialsDTO;
 import java.io.IOException;
@@ -30,8 +31,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         HttpServletResponse res) throws AuthenticationException {
 
         try {
-            CredentialsDTO creds = new ObjectMapper()
-                .readValue(req.getInputStream(), CredentialsDTO.class);
+            CredentialsDTO creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsDTO.class);
 
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 creds.getEmail(), creds.getPassword(), new ArrayList<>());

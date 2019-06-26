@@ -24,9 +24,8 @@ public class UserController {
         LOGGER.info("Adding new user [" + user.getEmail() + "]");
         try {
             userService.addUser(user);
-            return new ResponseEntity<>("User [" + user.getEmail() + "] added successfully", HttpStatus.OK);
+            return new ResponseEntity<>(new AddUserResponse(user.getEmail(), "User added successfully"), HttpStatus.OK);
         } catch (UserRegisteredException e){
-
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -44,5 +43,15 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<?> getVersion(){
         return new ResponseEntity<>("0.0.1", HttpStatus.OK);
+    }
+
+    private class AddUserResponse {
+        private String email;
+        private String msg;
+
+        public AddUserResponse(String email, String msg) {
+            this.email = email;
+            this.msg = msg;
+        }
     }
 }
