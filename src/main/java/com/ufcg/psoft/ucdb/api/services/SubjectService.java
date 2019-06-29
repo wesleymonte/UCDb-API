@@ -1,6 +1,7 @@
 package com.ufcg.psoft.ucdb.api.services;
 
 import com.ufcg.psoft.ucdb.api.repositories.SubjectRepository;
+import com.ufcg.psoft.ucdb.core.models.SimpleSubject;
 import com.ufcg.psoft.ucdb.core.models.Subject;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,13 @@ public class SubjectService {
         return subject.orElse(null);
     }
 
-    public List<Subject> searchByName(String substring){
-        List<Subject> foundSubjects = new ArrayList<>();
+    public List<SimpleSubject> searchByName(String substring){
+        List<SimpleSubject> foundSubjects = new ArrayList<>();
         List<Subject> subjects = subjectRepository.findAll();
         for(Subject s : subjects){
             if(s.getName().toLowerCase().contains(substring.trim().toLowerCase())){
-                foundSubjects.add(s);
+                SimpleSubject simpleSubject = new SimpleSubject(s);
+                foundSubjects.add(simpleSubject);
             }
         }
         return foundSubjects;
