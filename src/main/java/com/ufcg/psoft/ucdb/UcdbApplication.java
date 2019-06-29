@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
@@ -21,7 +22,9 @@ public class UcdbApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(UcdbApplication.class, args);
+        SpringApplication springApplication = new SpringApplication(UcdbApplication.class);
+        springApplication.addListeners(new ApplicationPidFileWriter("./bin/shutdown.pid"));
+        springApplication.run(args);
     }
 
 }
