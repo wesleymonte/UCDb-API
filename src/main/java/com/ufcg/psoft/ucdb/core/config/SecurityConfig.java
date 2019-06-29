@@ -5,8 +5,11 @@ import com.ufcg.psoft.ucdb.core.security.JWTAuthorizationFilter;
 import com.ufcg.psoft.ucdb.core.security.JWTUtil;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private Environment env;
 
     private static final String[] PUBLIC_MATCHERS = {
-        "/h2/**"
+        "/h2/**",
+        "/v1/subject/**"
     };
 
     private static final String[] PUBLIC_MATCHERS_POST = {

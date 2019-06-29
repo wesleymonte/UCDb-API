@@ -6,6 +6,7 @@ import com.ufcg.psoft.ucdb.api.services.UserService;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,14 @@ public class UserController {
         public AddUserResponse(String email, String msg) {
             this.email = email;
             this.msg = msg;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getMsg() {
+            return msg;
         }
     }
 }

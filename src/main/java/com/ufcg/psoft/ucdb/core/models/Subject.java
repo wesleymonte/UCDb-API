@@ -16,8 +16,7 @@ public class Subject implements Serializable {
     private int id;
     private String name;
 
-    public Subject(int id, String name) {
-        this.id = id;
+    public Subject(String name) {
         this.name = name;
     }
 

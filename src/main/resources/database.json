@@ -1,290 +1,290 @@
 [
   {
-    "nome":"ADMINISTRAÇÃO"
+    "name":"ADMINISTRAÇÃO"
   },
   {
-    "nome":"ADMINISTRAÇÃO DE SISTEMAS"
+    "name":"ADMINISTRAÇÃO DE SISTEMAS"
   },
   {
-    "nome":"ADMINISTRAÇÃO DE SISTEMAS DE INFORMAÇÃO"
+    "name":"ADMINISTRAÇÃO DE SISTEMAS DE INFORMAÇÃO"
   },
   {
-    "nome":"ALGEBRA LINEAR I"
+    "name":"ALGEBRA LINEAR I"
   },
   {
-    "nome":"ALGORITMOS AVANÇADOS I"
+    "name":"ALGORITMOS AVANÇADOS I"
   },
   {
-    "nome":"ALGORITMOS AVANCADOS II"
+    "name":"ALGORITMOS AVANCADOS II"
   },
   {
-    "nome":"ALGORITMOS AVANCADOS III"
+    "name":"ALGORITMOS AVANCADOS III"
   },
   {
-    "nome":"ANÁLISE DE SISTEMAS"
+    "name":"ANÁLISE DE SISTEMAS"
   },
   {
-    "nome":"ANÁLISE E TÉCNICAS DE ALGORITMOS"
+    "name":"ANÁLISE E TÉCNICAS DE ALGORITMOS"
   },
   {
-    "nome":"APLICAÇÕES DE GRAFOS"
+    "name":"APLICAÇÕES DE GRAFOS"
   },
   {
-    "nome":"APLICAÇÕES DE PLP"
+    "name":"APLICAÇÕES DE PLP"
   },
   {
-    "nome":"AVALIAÇÃO DE DESEMPENHO DE SISTEMAS DISCRETOS"
+    "name":"AVALIAÇÃO DE DESEMPENHO DE SISTEMAS DISCRETOS"
   },
   {
-    "nome":"BANCO DE DADOS 1"
+    "name":"BANCO DE DADOS 1"
   },
   {
-    "nome":"BANCO DE DADOS 2"
+    "name":"BANCO DE DADOS 2"
   },
   {
-    "nome":"BASQUETEBOL FEM"
+    "name":"BASQUETEBOL FEM"
   },
   {
-    "nome":"BASQUETEBOL MAS"
+    "name":"BASQUETEBOL MAS"
   },
   {
-    "nome":"CALCULO DIFERENCIAL E INTEGRAL I"
+    "name":"CALCULO DIFERENCIAL E INTEGRAL I"
   },
   {
-    "nome":"CALCULO DIFERENCIAL E INTEGRAL II"
+    "name":"CALCULO DIFERENCIAL E INTEGRAL II"
   },
   {
-    "nome":"CÁLCULO NUMÉRICO"
+    "name":"CÁLCULO NUMÉRICO"
   },
   {
-    "nome":"CIÊNCIA DE DADOS DESCRITIVA"
+    "name":"CIÊNCIA DE DADOS DESCRITIVA"
   },
   {
-    "nome":"CIÊNCIA DE DADOS PREDITIVA"
+    "name":"CIÊNCIA DE DADOS PREDITIVA"
   },
   {
-    "nome":"COMPILADORES"
+    "name":"COMPILADORES"
   },
   {
-    "nome":"DESENVOLVIMENTO DE APLICAÇÕES CORPORATIVAS AVANÇADAS"
+    "name":"DESENVOLVIMENTO DE APLICAÇÕES CORPORATIVAS AVANÇADAS"
   },
   {
-    "nome":"DIREITO E CIDADANIA"
+    "name":"DIREITO E CIDADANIA"
   },
   {
-    "nome":"ECONOMIA"
+    "name":"ECONOMIA"
   },
   {
-    "nome":"ECONOMIA DE TECNOLOGIA DA INFORMAÇÃO"
+    "name":"ECONOMIA DE TECNOLOGIA DA INFORMAÇÃO"
   },
   {
-    "nome":"EMPREENDEDORISMO"
+    "name":"EMPREENDEDORISMO"
   },
   {
-    "nome":"EMPREENDEDORISMO EM SOFTWARE"
+    "name":"EMPREENDEDORISMO EM SOFTWARE"
   },
   {
-    "nome":"ENGENHARIA DE SOFTWARE"
+    "name":"ENGENHARIA DE SOFTWARE"
   },
   {
-    "nome":"ESTÁGIO INTEGRADO"
+    "name":"ESTÁGIO INTEGRADO"
   },
   {
-    "nome":"ESTÁGIO INTEGRADO I"
+    "name":"ESTÁGIO INTEGRADO I"
   },
   {
-    "nome":"ESTAGIO INTEGRADO II"
+    "name":"ESTAGIO INTEGRADO II"
   },
   {
-    "nome":"ESTAGIO INTEGRADO III"
+    "name":"ESTAGIO INTEGRADO III"
   },
   {
-    "nome":"ESTATÍSTICA APLICADA"
+    "name":"ESTATÍSTICA APLICADA"
   },
   {
-    "nome":"ESTRUTURA DE DADOS"
+    "name":"ESTRUTURA DE DADOS"
   },
   {
-    "nome":"FUNDAMENTOS DE MATEMATICA PARA CIÊNCIA DA COMPUTACAO I"
+    "name":"FUNDAMENTOS DE MATEMATICA PARA CIÊNCIA DA COMPUTACAO I"
   },
   {
-    "nome":"FUNDAMENTOS DE MATEMATICA PARA CIÊNCIA DA COMPUTACAO II"
+    "name":"FUNDAMENTOS DE MATEMATICA PARA CIÊNCIA DA COMPUTACAO II"
   },
   {
-    "nome":"FUNDAMENTOS DE PROGRAMAÇÃO CONCORRENTE"
+    "name":"FUNDAMENTOS DE PROGRAMAÇÃO CONCORRENTE"
   },
   {
-    "nome":"FUTSAL"
+    "name":"FUTSAL"
   },
   {
-    "nome":"GERÊNCIA DE REDES DE COMPUTADORES"
+    "name":"GERÊNCIA DE REDES DE COMPUTADORES"
   },
   {
-    "nome":"GESTÃO DE PROJETOS"
+    "name":"GESTÃO DE PROJETOS"
   },
   {
-    "nome":"GESTÃO DE SISTEMAS DE INFORMAÇÃO"
+    "name":"GESTÃO DE SISTEMAS DE INFORMAÇÃO"
   },
   {
-    "nome":"GOVERNÂNCIA DA INTERNET"
+    "name":"GOVERNÂNCIA DA INTERNET"
   },
   {
-    "nome":"INFORMÁTICA E SOCIEDADE"
+    "name":"INFORMÁTICA E SOCIEDADE"
   },
   {
-    "nome":"INGLÊS"
+    "name":"INGLÊS"
   },
   {
-    "nome":"INTELIGÊNCIA ARTIFICIAL"
+    "name":"INTELIGÊNCIA ARTIFICIAL"
   },
   {
-    "nome":"INTERCONEXÃO DE REDES DE COMPUTADORES"
+    "name":"INTERCONEXÃO DE REDES DE COMPUTADORES"
   },
   {
-    "nome":"INTRODUÇÃO A BANCO DE DADOS E MINERAÇÃO DE DADOS"
+    "name":"INTRODUÇÃO A BANCO DE DADOS E MINERAÇÃO DE DADOS"
   },
   {
-    "nome":"INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO"
+    "name":"INTRODUÇÃO À CIÊNCIA DA COMPUTAÇÃO"
   },
   {
-    "nome":"INTRODUÇÃO À COMPUTAÇÃO"
+    "name":"INTRODUÇÃO À COMPUTAÇÃO"
   },
   {
-    "nome":"INTRODUÇÃO À PROBABILIDADE"
+    "name":"INTRODUÇÃO À PROBABILIDADE"
   },
   {
-    "nome":"JOGOS DIGITAIS"
+    "name":"JOGOS DIGITAIS"
   },
   {
-    "nome":"LABORATÓRIO DE ENGENHARIA DE SOFTWARE"
+    "name":"LABORATÓRIO DE ENGENHARIA DE SOFTWARE"
   },
   {
-    "nome":"LABORATÓRIO DE ESTRUTURA DE DADOS"
+    "name":"LABORATÓRIO DE ESTRUTURA DE DADOS"
   },
   {
-    "nome":"LABORATÓRIO DE INTERCONEXÃO DE REDES DE COMPUTADORES"
+    "name":"LABORATÓRIO DE INTERCONEXÃO DE REDES DE COMPUTADORES"
   },
   {
-    "nome":"LABORATÓRIO DE ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES"
+    "name":"LABORATÓRIO DE ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES"
   },
   {
-    "nome":"LABORATÓRIO DE PROGRAMAÇÃO 1"
+    "name":"LABORATÓRIO DE PROGRAMAÇÃO 1"
   },
   {
-    "nome":"LABORATÓRIO DE PROGRAMAÇÃO 2"
+    "name":"LABORATÓRIO DE PROGRAMAÇÃO 2"
   },
   {
-    "nome":"LEITURA E PRODUÇÃO DE TEXTO"
+    "name":"LEITURA E PRODUÇÃO DE TEXTO"
   },
   {
-    "nome":"LÍNGUA PORTUGUESA"
+    "name":"LÍNGUA PORTUGUESA"
   },
   {
-    "nome":"LÓGICA PARA COMPUTAÇÃO"
+    "name":"LÓGICA PARA COMPUTAÇÃO"
   },
   {
-    "nome":"METODOLOGIA CIENTÍFICA"
+    "name":"METODOLOGIA CIENTÍFICA"
   },
   {
-    "nome":"MÉTODOS E SOFTWARE NUMÉRICOS"
+    "name":"MÉTODOS E SOFTWARE NUMÉRICOS"
   },
   {
-    "nome":"MÉTODOS ESTATÍSTICOS"
+    "name":"MÉTODOS ESTATÍSTICOS"
   },
   {
-    "nome":"ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES"
+    "name":"ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES"
   },
   {
-    "nome":"PARADIGMAS DE LINGUAGENS DE PROGRAMAÇÃO"
+    "name":"PARADIGMAS DE LINGUAGENS DE PROGRAMAÇÃO"
   },
   {
-    "nome":"PERCEPÇÃO COMPUTACIONAL"
+    "name":"PERCEPÇÃO COMPUTACIONAL"
   },
   {
-    "nome":"PRÁTICA DE ENSINO DE COMPUTAÇÃO I"
+    "name":"PRÁTICA DE ENSINO DE COMPUTAÇÃO I"
   },
   {
-    "nome":"PRÁTICA DE ENSINO DE COMPUTAÇÃO II"
+    "name":"PRÁTICA DE ENSINO DE COMPUTAÇÃO II"
   },
   {
-    "nome":"PRINCÍPIOS DE DESENVOLVIMENTO WEB"
+    "name":"PRINCÍPIOS DE DESENVOLVIMENTO WEB"
   },
   {
-    "nome":"PROGRAMAÇÃO 1"
+    "name":"PROGRAMAÇÃO 1"
   },
   {
-    "nome":"PROGRAMAÇÃO 2"
+    "name":"PROGRAMAÇÃO 2"
   },
   {
-    "nome":"PROGRAMAÇÃO CONCORRENTE"
+    "name":"PROGRAMAÇÃO CONCORRENTE"
   },
   {
-    "nome":"PROGRAMAÇÃO FUNCIONAL"
+    "name":"PROGRAMAÇÃO FUNCIONAL"
   },
   {
-    "nome":"PROJETO DE REDES DE COMPUTADORES"
+    "name":"PROJETO DE REDES DE COMPUTADORES"
   },
   {
-    "nome":"PROJETO DE SISTEMAS OPERACIONAIS"
+    "name":"PROJETO DE SISTEMAS OPERACIONAIS"
   },
   {
-    "nome":"PROJETO DE SOFTWARE"
+    "name":"PROJETO DE SOFTWARE"
   },
   {
-    "nome":"PROJETO DE TRABALHO DE CONCLUSAO DE CURSO"
+    "name":"PROJETO DE TRABALHO DE CONCLUSAO DE CURSO"
   },
   {
-    "nome":"PROJETO EM COMPUTAÇÃO 1"
+    "name":"PROJETO EM COMPUTAÇÃO 1"
   },
   {
-    "nome":"PROJETO EM COMPUTAÇÃO 2"
+    "name":"PROJETO EM COMPUTAÇÃO 2"
   },
   {
-    "nome":"RECUPERAÇÃO DA INFORMAÇÃO E BUSCA NA WEB"
+    "name":"RECUPERAÇÃO DA INFORMAÇÃO E BUSCA NA WEB"
   },
   {
-    "nome":"REDES DE COMPUTADORES"
+    "name":"REDES DE COMPUTADORES"
   },
   {
-    "nome":"SEMINÁRIOS"
+    "name":"SEMINÁRIOS"
   },
   {
-    "nome":"SEMINÁRIOS (EDUCAÇÃO AMBIENTAL)"
+    "name":"SEMINÁRIOS (EDUCAÇÃO AMBIENTAL)"
   },
   {
-    "nome":"SISTEMAS DE APOIO À DECISÃO"
+    "name":"SISTEMAS DE APOIO À DECISÃO"
   },
   {
-    "nome":"SISTEMAS DE INFORMAÇÃO II"
+    "name":"SISTEMAS DE INFORMAÇÃO II"
   },
   {
-    "nome":"SISTEMAS DE RECUPUPERAÇÃO DA INFORMAÇÃO"
+    "name":"SISTEMAS DE RECUPUPERAÇÃO DA INFORMAÇÃO"
   },
   {
-    "nome":"SISTEMAS OPERACIONAIS"
+    "name":"SISTEMAS OPERACIONAIS"
   },
   {
-    "nome":"SOCIOLOGIA INDUSTRIAL I"
+    "name":"SOCIOLOGIA INDUSTRIAL I"
   },
   {
-    "nome":"TÉCNICAS DE PROGRAMAÇÃO"
+    "name":"TÉCNICAS DE PROGRAMAÇÃO"
   },
   {
-    "nome":"TEORIA DA COMPUTAÇÃO"
+    "name":"TEORIA DA COMPUTAÇÃO"
   },
   {
-    "nome":"TEORIA DOS GRAFOS"
+    "name":"TEORIA DOS GRAFOS"
   },
   {
-    "nome":"TRABALHO DE CONCLUSAO DE CURSO"
+    "name":"TRABALHO DE CONCLUSAO DE CURSO"
   },
   {
-    "nome":"VERIFICACAO E VALIDAÇÃO DE SOFTWARE"
+    "name":"VERIFICACAO E VALIDAÇÃO DE SOFTWARE"
   },
   {
-    "nome":"VISÃO COMPUTACIONAL"
+    "name":"VISÃO COMPUTACIONAL"
   },
   {
-    "nome":"VISUALIZAÇÃO DE DADOS"
+    "name":"VISUALIZAÇÃO DE DADOS"
   }
 ]
