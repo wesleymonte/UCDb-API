@@ -1,5 +1,6 @@
 package com.ufcg.psoft.ucdb.core.models;
 
+import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -48,5 +49,18 @@ public class Subject implements Serializable {
 
     public List<Integer> getLikes() {
         return likes;
+    }
+
+    public void addComment(Comment comment){
+        this.commentList.add(comment);
+    }
+
+    public void replyComment(Integer commentId, Comment comment){
+        for(Comment c : this.commentList){
+            if(c.getId().equals(commentId)){
+                c.addReply(comment);
+                break;
+            }
+        }
     }
 }
