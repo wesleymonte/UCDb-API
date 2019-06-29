@@ -1,6 +1,8 @@
 package com.ufcg.psoft.ucdb.api.controllers;
 
 import com.ufcg.psoft.ucdb.api.services.SubjectService;
+import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
+import com.ufcg.psoft.ucdb.core.models.Comment;
 import com.ufcg.psoft.ucdb.core.models.SimpleSubject;
 import com.ufcg.psoft.ucdb.core.models.Subject;
 import java.util.List;
@@ -8,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +36,18 @@ public class SubjectController {
         Subject subject = subjectService.getSubject(id);
         return new ResponseEntity<>(subject, HttpStatus.OK);
     }
+
+    @PostMapping("/subject/{id}/comment")
+    public ResponseEntity<Subject> addComment(@PathVariable Integer id, @RequestBody CommentDTO commentDTO){
+        Subject subject = subjectService.addComment(id, commentDTO);
+        return new ResponseEntity<>(subject, HttpStatus.OK);
+    }
+
+    @PostMapping("/subject/{subjectId}/comment/{commentId}")
+    public ResponseEntity<Subject> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody CommentDTO commentDTO){
+        Subject subject = subjectService.replyComment(subjectId, commentId, commentDTO);
+        return new ResponseEntity<>(subject, HttpStatus.OK);
+    }
+
 
 }
