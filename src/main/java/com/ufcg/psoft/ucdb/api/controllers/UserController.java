@@ -6,6 +6,7 @@ import com.ufcg.psoft.ucdb.api.services.UserService;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,8 @@ public class UserController {
         LOGGER.info("Adding new user [" + user.getEmail() + "]");
         try {
             userService.addUser(user);
-            return new ResponseEntity<>("User [" + user.getEmail() + "] added successfully", HttpStatus.OK);
+            return new ResponseEntity<>(new AddUserResponse(user.getEmail(), "User added successfully"), HttpStatus.OK);
         } catch (UserRegisteredException e){
-
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -44,5 +44,23 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<?> getVersion(){
         return new ResponseEntity<>("0.0.1", HttpStatus.OK);
+    }
+
+    private class AddUserResponse {
+        private String email;
+        private String msg;
+
+        public AddUserResponse(String email, String msg) {
+            this.email = email;
+            this.msg = msg;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
     }
 }
