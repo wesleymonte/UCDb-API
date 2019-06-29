@@ -34,4 +34,5 @@ app.log
 logs/
 src/main/resources/logback-spring.xml
 ucdb.conf
+bin/shutdown.pid
 
