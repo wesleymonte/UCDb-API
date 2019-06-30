@@ -111,11 +111,13 @@ public class Comment {
         return c;
     }
 
-    public void deleteReply(Integer replyId) {
+    public void deleteReply(String author, Integer replyId) {
         for(Reply r : this.getReplies()){
             if(r.getId().equals(replyId)){
-                r.delete();
-                break;
+                if(r.getAuthor().equals(author)){
+                    r.delete();
+                    break;
+                }
             }
         }
     }

@@ -15,6 +15,8 @@ public class RegisterController {
 
     private static final Logger LOGGER = LogManager.getLogger(RegisterController.class);
 
+    private final static String SUCCESSFULLY_MSG = "User added successfully. A message was sent to your email.";
+
     @Autowired
     UserService userService;
 
@@ -24,20 +26,11 @@ public class RegisterController {
         LOGGER.info("Adding new user [" + user.getEmail() + "]");
         try {
             userService.addUser(user);
-            return new ResponseEntity<>(new AddUserResponse(user.getEmail(), "User added successfully"), HttpStatus.OK);
+            return new ResponseEntity<>(new AddUserResponse(user.getEmail(), SUCCESSFULLY_MSG), HttpStatus.OK);
         } catch (UserRegisteredException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-//    @GetMapping("/user/{email}")
-//    @ResponseBody
-//    public ResponseEntity<?> addUser(@PathVariable String email){
-//        LOGGER.info("Getting user with email [" + email + "].");
-//        User user = userService.getUser(email);
-//        return new ResponseEntity<>(user, HttpStatus.OK);
-//    }
-
 
     @GetMapping("/version")
     @ResponseBody

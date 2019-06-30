@@ -47,44 +47,46 @@ public class SubjectService {
         return foundSubjects;
     }
 
-    public Subject addComment(Integer subjectId, CommentDTO commentDTO){
-        Comment comment = commentFromDTO(commentDTO);
+    public Subject addComment(Integer subjectId, String author, CommentDTO commentDTO){
+        Comment comment = commentFromDTO(author, commentDTO);
         Subject subject = this.getSubject(subjectId);
         subject.addComment(comment);
         subject = subjectRepository.save(subject);
         return subject;
     }
 
-    public Subject deleteComment(Integer subjectId, Integer commentId){
+    public Subject deleteComment(Integer subjectId, String author, Integer commentId){
         Subject subject = this.getSubject(subjectId);
-        for(Comment c : subject.getCommentList()){
-            if(c.getId().equals(commentId)){
-                c.delete();
-                break;
-            }
-        }
+        subject.deleteComment(author, commentId);
         subject = this.subjectRepository.save(subject);
         return subject;
     }
 
-    public Subject replyComment(Integer subjectId, Integer commentId, ReplyDTO replyDTO){
-        Reply reply = replyFromDTO(replyDTO);
+    public Subject replyComment(Integer subjectId, Integer commentId, String author, ReplyDTO replyDTO){
+        Reply reply = replyFromDTO(author, replyDTO);
         Subject subject = this.getSubject(subjectId);
-        subject.replyComment(commentId, reply);
+        subject.addReply(commentId, reply);
         subject = subjectRepository.save(subject);
         return subject;
     }
 
-    public Subject deleteReply(Integer subjectId, Integer commentId, Integer replyId){
+    public Subject deleteReply(Integer subjectId, Integer commentId, String author, Integer replyId){
         Subject subject = this.getSubject(subjectId);
-        subject.deleteReply(commentId, replyId);
+        subject.deleteReply(commentId, author, replyId);
         subject = this.subjectRepository.save(subject);
         return subject;
     }
 
-    public Subject like(Integer subjectId, String user){
+    public Subject addLike(Integer subjectId, String user){
         Subject subject = getSubject(subjectId);
         subject.like(user);
+        subject = this.subjectRepository.save(subject);
+        return subject;
+    }
+
+    public Subject removeLike(Integer subjectId, String user) {
+        Subject subject = getSubject(subjectId);
+        subject.removeLike(user);
         subject = this.subjectRepository.save(subject);
         return subject;
     }
@@ -121,13 +123,13 @@ public class SubjectService {
         return new SubjectDTO(subject);
     }
 
-    private Comment commentFromDTO(CommentDTO commentDTO){
-        Comment comment = new Comment(commentDTO.getAuthor(), commentDTO.getMsg());
+    private Comment commentFromDTO(String author, CommentDTO commentDTO){
+        Comment comment = new Comment(author, commentDTO.getMsg());
         return comment;
     }
 
-    private Reply replyFromDTO(ReplyDTO replyDTO){
-        Reply reply = new Reply(replyDTO.getAuthor(), replyDTO.getMsg());
+    private Reply replyFromDTO(String author, ReplyDTO replyDTO){
+        Reply reply = new Reply(author, replyDTO.getMsg());
         return reply;
     }
 }

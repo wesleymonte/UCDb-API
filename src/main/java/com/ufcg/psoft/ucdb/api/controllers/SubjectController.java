@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.ufcg.psoft.ucdb.core.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,42 +31,58 @@ public class SubjectController {
 
     @GetMapping("/subject/{id}")
     public ResponseEntity<SubjectDTO> getSubjectById(@PathVariable Integer id){
+        String author = this.getCurrentUser();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Author", author);
+        
         Subject subject = subjectService.getSubject(id);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
-        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
+        return new ResponseEntity<>(subjectDTO, headers, HttpStatus.OK);
     }
 
     @PostMapping("/subject/{subjectId}/comment")
     public ResponseEntity<Subject> addComment(@PathVariable Integer subjectId, @RequestBody CommentDTO commentDTO){
-        Subject subject = subjectService.addComment(subjectId, commentDTO);
+        String author = this.getCurrentUser();
+        Subject subject = subjectService.addComment(subjectId, author, commentDTO);
         return new ResponseEntity<>(subject, HttpStatus.OK);
     }
 
     @DeleteMapping("/subject/{subjectId}/comment/{commentId}")
     public ResponseEntity<SubjectDTO> deleteComment(@PathVariable Integer subjectId, @PathVariable Integer commentId){
-        Subject subject = subjectService.deleteComment(subjectId, commentId);
+        String author = this.getCurrentUser();
+        Subject subject = subjectService.deleteComment(subjectId, author, commentId);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
 
     @PostMapping("/subject/{subjectId}/comment/{commentId}/reply")
     public ResponseEntity<Subject> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody ReplyDTO replyDTO){
-        Subject subject = subjectService.replyComment(subjectId, commentId, replyDTO);
+        String author = this.getCurrentUser();
+        Subject subject = subjectService.replyComment(subjectId, commentId, author, replyDTO);
         return new ResponseEntity<>(subject, HttpStatus.OK);
     }
 
 
     @DeleteMapping("/subject/{subjectId}/comment/{commentId}/reply/{replyId}")
     public ResponseEntity<SubjectDTO> depleteReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @PathVariable Integer replyId){
-        Subject subject = subjectService.deleteReply(subjectId, commentId, replyId);
+        String author = this.getCurrentUser();
+        Subject subject = subjectService.deleteReply(subjectId, commentId, author, replyId);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
 
     @PostMapping("/subject/{subjectId}/like")
-    public ResponseEntity<SubjectDTO> like(@PathVariable Integer subjectId){
+    public ResponseEntity<SubjectDTO> addLike(@PathVariable Integer subjectId){
         String user = getCurrentUser();
-        Subject subject = this.subjectService.like(subjectId, user);
+        Subject subject = this.subjectService.addLike(subjectId, user);
+        SubjectDTO subjectDTO = new SubjectDTO(subject);
+        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/subject/{subjectId}/like")
+    public ResponseEntity<SubjectDTO> removeLike(@PathVariable Integer subjectId){
+        String user = getCurrentUser();
+        Subject subject = this.subjectService.removeLike(subjectId, user);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
