@@ -2,9 +2,12 @@ package com.ufcg.psoft.ucdb.core.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     private String email;
@@ -18,6 +21,8 @@ public class User {
         this.lastName = lastName;
         this.password = password;
     }
+
+    public User(){}
 
     public String getEmail() {
         return email;
@@ -33,21 +38,5 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
