@@ -23,7 +23,7 @@ public class Subject implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> commentList;
     @ElementCollection
-    private List<Integer> likes;
+    private List<String> likes;
 
     public Subject(String name) {
         this.name = name;
@@ -31,7 +31,7 @@ public class Subject implements Serializable {
 
     public Subject(){}
 
-    public void addLike(Integer userId){
+    public void like(String userId){
         likes.add(userId);
     }
 
@@ -47,7 +47,7 @@ public class Subject implements Serializable {
         return commentList;
     }
 
-    public List<Integer> getLikes() {
+    public List<String> getLikes() {
         return likes;
     }
 

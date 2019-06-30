@@ -10,7 +10,7 @@ public class SubjectDTO {
     private Integer id;
     private String name;
     private List<Comment> commentList;
-    private List<Integer> likes;
+    private List<String> likes;
 
     public SubjectDTO(Subject subject){
         this.id = subject.getId();
@@ -41,7 +41,7 @@ public class SubjectDTO {
         return commentList;
     }
 
-    public List<Integer> getLikes() {
+    public List<String> getLikes() {
         return likes;
     }
 }

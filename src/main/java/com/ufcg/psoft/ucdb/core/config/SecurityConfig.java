@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {
         "/h2/**",
-        "/v1/subject/**"
+        "/v1/subject/**",
     };
 
     private static final String[] PUBLIC_MATCHERS_POST = {
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable();
-        http.authorizeRequests()
+        http.authorizeRequests().antMatchers("/v1/subject/**/like").authenticated()
             .antMatchers(PUBLIC_MATCHERS).permitAll()
             .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
             .anyRequest().authenticated();

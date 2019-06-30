@@ -7,9 +7,12 @@ import com.ufcg.psoft.ucdb.core.dto.SubjectDTO;
 import com.ufcg.psoft.ucdb.core.models.SimpleSubject;
 import com.ufcg.psoft.ucdb.core.models.Subject;
 import java.util.List;
+
+import com.ufcg.psoft.ucdb.core.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -57,6 +60,25 @@ public class SubjectController {
         Subject subject = subjectService.deleteReply(subjectId, commentId, replyId);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
+    }
+
+    @PostMapping("/subject/{subjectId}/like")
+    public ResponseEntity<SubjectDTO> like(@PathVariable Integer subjectId){
+        String user = getCurrentUser();
+        Subject subject = this.subjectService.like(subjectId, user);
+        SubjectDTO subjectDTO = new SubjectDTO(subject);
+        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/subject/ranking")
+    public ResponseEntity<List<SubjectDTO>> getRanking(@RequestParam String method){
+        List<SubjectDTO> subjectDTOS = this.subjectService.getRanking(method);
+        return new ResponseEntity<>(subjectDTOS, HttpStatus.OK);
+    }
+
+    private String getCurrentUser(){
+        String email = ((UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        return email;
     }
 
 }
