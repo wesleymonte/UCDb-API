@@ -2,7 +2,9 @@ package com.ufcg.psoft.ucdb.api.services;
 
 import com.ufcg.psoft.ucdb.api.repositories.SubjectRepository;
 import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
+import com.ufcg.psoft.ucdb.core.dto.ReplyDTO;
 import com.ufcg.psoft.ucdb.core.models.Comment;
+import com.ufcg.psoft.ucdb.core.models.Reply;
 import com.ufcg.psoft.ucdb.core.models.SimpleSubject;
 import com.ufcg.psoft.ucdb.core.models.Subject;
 import java.util.ArrayList;
@@ -42,16 +44,33 @@ public class SubjectService {
         return subject;
     }
 
-    public Subject replyComment(Integer subjectId, Integer commentId, CommentDTO commentDTO){
-        Comment comment = commentFromDTO(commentDTO);
+    public Subject replyComment(Integer subjectId, Integer commentId, ReplyDTO replyDTO){
+        Reply reply = replyFromDTO(replyDTO);
         Subject subject = this.getSubject(subjectId);
-        subject.replyComment(commentId, comment);
+        subject.replyComment(commentId, reply);
         subject = subjectRepository.save(subject);
+        return subject;
+    }
+
+    public Subject deleteComment(Integer subjectId, Integer commentId){
+        Subject subject = this.getSubject(subjectId);
+        for(Comment c : subject.getCommentList()){
+            if(c.getId().equals(commentId)){
+                c.delete();
+                break;
+            }
+        }
+        this.subjectRepository.save(subject);
         return subject;
     }
 
     private Comment commentFromDTO(CommentDTO commentDTO){
         Comment comment = new Comment(commentDTO.getAuthor(), commentDTO.getMsg());
         return comment;
+    }
+
+    private Reply replyFromDTO(ReplyDTO replyDTO){
+        Reply reply = new Reply(replyDTO.getAuthor(), replyDTO.getMsg());
+        return reply;
     }
 }

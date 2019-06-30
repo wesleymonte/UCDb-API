@@ -4,6 +4,8 @@ import com.ufcg.psoft.ucdb.core.security.JWTAuthenticationFilter;
 import com.ufcg.psoft.ucdb.core.security.JWTAuthorizationFilter;
 import com.ufcg.psoft.ucdb.core.security.JWTUtil;
 import java.util.Arrays;
+
+import com.ufcg.psoft.ucdb.core.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -29,7 +31,7 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private JWTUtil jwtUtil;

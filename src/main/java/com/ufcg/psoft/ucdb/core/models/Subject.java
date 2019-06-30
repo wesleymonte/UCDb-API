@@ -55,10 +55,10 @@ public class Subject implements Serializable {
         this.commentList.add(comment);
     }
 
-    public void replyComment(Integer commentId, Comment comment){
+    public void replyComment(Integer commentId, Reply reply){
         for(Comment c : this.commentList){
             if(c.getId().equals(commentId)){
-                c.addReply(comment);
+                c.addReply(reply);
                 break;
             }
         }

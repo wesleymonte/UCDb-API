@@ -1,15 +1,15 @@
 package com.ufcg.psoft.ucdb.core.dto;
 
-public class CommentDTO {
+public class ReplyDTO {
     private String author;
     private String msg;
 
-    public CommentDTO(String author, String msg) {
+    public ReplyDTO(String author, String msg) {
         this.author = author;
         this.msg = msg;
     }
 
-    public CommentDTO(){}
+    public ReplyDTO(){}
 
     public String getAuthor() {
         return author;
