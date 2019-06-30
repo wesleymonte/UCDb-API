@@ -6,22 +6,21 @@ import com.ufcg.psoft.ucdb.api.services.UserService;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1")
-public class UserController {
+public class RegisterController {
 
-    private static final Logger LOGGER = LogManager.getLogger(UserController.class);
+    private static final Logger LOGGER = LogManager.getLogger(RegisterController.class);
 
     @Autowired
     UserService userService;
 
-    @PostMapping("/user")
+    @PostMapping("/signup")
     @ResponseBody
-    public ResponseEntity<?> addUser(@RequestBody User user){
+    public ResponseEntity<?> registerUser(@RequestBody User user){
         LOGGER.info("Adding new user [" + user.getEmail() + "]");
         try {
             userService.addUser(user);
@@ -31,13 +30,13 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{email}")
-    @ResponseBody
-    public ResponseEntity<?> addUser(@PathVariable String email){
-        LOGGER.info("Getting user with email [" + email + "].");
-        User user = userService.getUser(email);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+//    @GetMapping("/user/{email}")
+//    @ResponseBody
+//    public ResponseEntity<?> addUser(@PathVariable String email){
+//        LOGGER.info("Getting user with email [" + email + "].");
+//        User user = userService.getUser(email);
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 
 
     @GetMapping("/version")
