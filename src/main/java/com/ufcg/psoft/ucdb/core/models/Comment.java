@@ -3,8 +3,9 @@ package com.ufcg.psoft.ucdb.core.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Comment {
     private Integer id;
     private String author;
     private String msg;
-    private String timestamp;
+    private long timestamp;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reply> replies;
     private boolean deleted;
@@ -29,7 +30,7 @@ public class Comment {
     public Comment(String author, String msg) {
         this.author = author;
         this.msg = msg;
-        this.timestamp = new SimpleDateFormat("ddMMyyyy_HHmmss").format(Calendar.getInstance().getTime());
+        this.timestamp = Instant.now().getEpochSecond();
         this.replies = new ArrayList<>();
         this.deleted = false;
     }
@@ -48,8 +49,17 @@ public class Comment {
         return msg;
     }
 
-    public String getTimestamp() {
+    @JsonIgnore
+    public long getTimestamp() {
         return timestamp;
+    }
+
+    public String getDate(){
+        Date date = new java.util.Date(this.timestamp*1000L);
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT-3"));
+        String formattedDate = sdf.format(date);
+        return formattedDate;
     }
 
     public List<Reply> getReplies() {
@@ -69,7 +79,7 @@ public class Comment {
         return this.deleted;
     }
 
-    private void setTimestamp(String timestamp){
+    private void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
