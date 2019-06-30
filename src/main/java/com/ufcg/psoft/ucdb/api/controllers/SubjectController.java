@@ -34,7 +34,7 @@ public class SubjectController {
         String author = this.getCurrentUser();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Author", author);
-        
+
         Subject subject = subjectService.getSubject(id);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, headers, HttpStatus.OK);
