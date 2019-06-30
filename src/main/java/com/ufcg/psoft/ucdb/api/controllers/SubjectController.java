@@ -32,15 +32,9 @@ public class SubjectController {
         return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/subject/{id}/comment")
-    public ResponseEntity<Subject> addComment(@PathVariable Integer id, @RequestBody CommentDTO commentDTO){
-        Subject subject = subjectService.addComment(id, commentDTO);
-        return new ResponseEntity<>(subject, HttpStatus.OK);
-    }
-
-    @PostMapping("/subject/{subjectId}/comment/{commentId}")
-    public ResponseEntity<Subject> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody ReplyDTO replyDTO){
-        Subject subject = subjectService.replyComment(subjectId, commentId, replyDTO);
+    @PostMapping("/subject/{subjectId}/comment")
+    public ResponseEntity<Subject> addComment(@PathVariable Integer subjectId, @RequestBody CommentDTO commentDTO){
+        Subject subject = subjectService.addComment(subjectId, commentDTO);
         return new ResponseEntity<>(subject, HttpStatus.OK);
     }
 
@@ -50,6 +44,24 @@ public class SubjectController {
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
+
+    @PostMapping("/subject/{subjectId}/comment/{commentId}/reply")
+    public ResponseEntity<Subject> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody ReplyDTO replyDTO){
+        Subject subject = subjectService.replyComment(subjectId, commentId, replyDTO);
+        return new ResponseEntity<>(subject, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/subject/{subjectId}/comment/{commentId}/reply/{replyId}")
+    public ResponseEntity<SubjectDTO> depleteReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @PathVariable Integer replyId){
+        Subject subject = subjectService.deleteReply(subjectId, commentId, replyId);
+        SubjectDTO subjectDTO = new SubjectDTO(subject);
+        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
+    }
+
+
+
+
 
 
 }

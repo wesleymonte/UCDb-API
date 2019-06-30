@@ -1,5 +1,7 @@
 package com.ufcg.psoft.ucdb.core.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,7 +40,12 @@ public class Reply {
         return timestamp;
     }
 
+    @JsonIgnore
     public boolean isDeleted() {
         return this.deleted;
+    }
+
+    public void delete(){
+        this.deleted = true;
     }
 }

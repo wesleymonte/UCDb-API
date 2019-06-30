@@ -64,6 +64,7 @@ public class Comment {
         this.deleted = true;
     }
 
+    @JsonIgnore
     public boolean isDeleted(){
         return this.deleted;
     }
@@ -76,7 +77,7 @@ public class Comment {
         this.id = id;
     }
 
-        private void setReplies(List<Reply> replies){
+    private void setReplies(List<Reply> replies){
         this.replies = replies;
     }
 
@@ -98,5 +99,14 @@ public class Comment {
         c.setReplies(this.getNotDeletedReplies());
         c.setTimestamp(this.getTimestamp());
         return c;
+    }
+
+    public void deleteReply(Integer replyId) {
+        for(Reply r : this.getReplies()){
+            if(r.getId().equals(replyId)){
+                r.delete();
+                break;
+            }
+        }
     }
 }

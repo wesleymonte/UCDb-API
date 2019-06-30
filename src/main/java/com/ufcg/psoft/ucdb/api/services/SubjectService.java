@@ -44,14 +44,6 @@ public class SubjectService {
         return subject;
     }
 
-    public Subject replyComment(Integer subjectId, Integer commentId, ReplyDTO replyDTO){
-        Reply reply = replyFromDTO(replyDTO);
-        Subject subject = this.getSubject(subjectId);
-        subject.replyComment(commentId, reply);
-        subject = subjectRepository.save(subject);
-        return subject;
-    }
-
     public Subject deleteComment(Integer subjectId, Integer commentId){
         Subject subject = this.getSubject(subjectId);
         for(Comment c : subject.getCommentList()){
@@ -60,7 +52,22 @@ public class SubjectService {
                 break;
             }
         }
-        this.subjectRepository.save(subject);
+        subject = this.subjectRepository.save(subject);
+        return subject;
+    }
+
+    public Subject replyComment(Integer subjectId, Integer commentId, ReplyDTO replyDTO){
+        Reply reply = replyFromDTO(replyDTO);
+        Subject subject = this.getSubject(subjectId);
+        subject.replyComment(commentId, reply);
+        subject = subjectRepository.save(subject);
+        return subject;
+    }
+
+    public Subject deleteReply(Integer subjectId, Integer commentId, Integer replyId){
+        Subject subject = this.getSubject(subjectId);
+        subject.deleteReply(commentId, replyId);
+        subject = this.subjectRepository.save(subject);
         return subject;
     }
 
