@@ -32,7 +32,6 @@ public class UcdbApplication implements CommandLineRunner{
     private SubjectRepository subjectRepository;
 
     @Bean
-    @Lazy
     public UcdbController ucdbController(){
         UcdbController ucdbController = new UcdbController();
         return ucdbController;

@@ -11,19 +11,24 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmailTransporter {
 
-    private final String email;
-    private final String password;
+    @Value("${ucdb.email}")
+    private String email;
+
+    @Value("${ucdb.password}")
+    private String password;
+
     private final String registrationMessage = "Parabéns, você foi cadastrado com sucesso";
     private final String registrationSubject = "Cadastro no UCDb";
 
     private static final Logger LOGGER = LogManager.getLogger(EmailTransporter.class);
 
-    public EmailTransporter(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public EmailTransporter() {
     }
 
     public void sendRegistrationEmail(String email){
