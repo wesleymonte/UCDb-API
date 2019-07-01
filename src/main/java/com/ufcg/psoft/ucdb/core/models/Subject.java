@@ -63,22 +63,14 @@ public class Subject implements Serializable {
                     break;
                 }
             }
+            if(c.deleteReply(author, commentId)) break;
         }
     }
 
-    public void addReply(Integer commentId, Reply reply){
+    public void addReply(Integer commentId, Comment reply){
         for(Comment c : this.commentList){
             if(c.getId().equals(commentId)){
                 c.addReply(reply);
-                break;
-            }
-        }
-    }
-
-    public void deleteReply(Integer commentId, String author, Integer replyId){
-        for(Comment c : this.commentList){
-            if(c.getId().equals(commentId)){
-                c.deleteReply(author, replyId);
                 break;
             }
         }

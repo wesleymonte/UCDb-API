@@ -2,7 +2,6 @@ package com.ufcg.psoft.ucdb.api.controllers;
 
 import com.ufcg.psoft.ucdb.api.services.SubjectService;
 import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
-import com.ufcg.psoft.ucdb.core.dto.ReplyDTO;
 import com.ufcg.psoft.ucdb.core.dto.SubjectDTO;
 import com.ufcg.psoft.ucdb.core.models.SimpleSubject;
 import com.ufcg.psoft.ucdb.core.models.Subject;
@@ -47,26 +46,17 @@ public class SubjectController {
         return new ResponseEntity<>(subject, HttpStatus.OK);
     }
 
+    @PostMapping("/subject/{subjectId}/comment/{commentId}")
+    public ResponseEntity<Subject> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody CommentDTO commentDTO){
+        String author = this.getCurrentUser();
+        Subject subject = subjectService.addReply(subjectId, commentId, author, commentDTO);
+        return new ResponseEntity<>(subject, HttpStatus.OK);
+    }
+
     @DeleteMapping("/subject/{subjectId}/comment/{commentId}")
     public ResponseEntity<SubjectDTO> deleteComment(@PathVariable Integer subjectId, @PathVariable Integer commentId){
         String author = this.getCurrentUser();
         Subject subject = subjectService.deleteComment(subjectId, author, commentId);
-        SubjectDTO subjectDTO = new SubjectDTO(subject);
-        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
-    }
-
-    @PostMapping("/subject/{subjectId}/comment/{commentId}/reply")
-    public ResponseEntity<Subject> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody ReplyDTO replyDTO){
-        String author = this.getCurrentUser();
-        Subject subject = subjectService.replyComment(subjectId, commentId, author, replyDTO);
-        return new ResponseEntity<>(subject, HttpStatus.OK);
-    }
-
-
-    @DeleteMapping("/subject/{subjectId}/comment/{commentId}/reply/{replyId}")
-    public ResponseEntity<SubjectDTO> depleteReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @PathVariable Integer replyId){
-        String author = this.getCurrentUser();
-        Subject subject = subjectService.deleteReply(subjectId, commentId, author, replyId);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }

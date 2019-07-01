@@ -24,7 +24,7 @@ public class Comment {
     private String msg;
     private long timestamp;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Reply> replies;
+    private List<Comment> replies;
     private boolean deleted;
 
     public Comment(String author, String msg) {
@@ -62,12 +62,12 @@ public class Comment {
         return formattedDate;
     }
 
-    public List<Reply> getReplies() {
+    public List<Comment> getReplies() {
         return replies;
     }
 
-    public void addReply(Reply reply){
-        this.replies.add(reply);
+    public void addReply(Comment comment){
+        this.replies.add(comment);
     }
 
     public void delete(){
@@ -87,16 +87,16 @@ public class Comment {
         this.id = id;
     }
 
-    private void setReplies(List<Reply> replies){
+    private void setReplies(List<Comment> replies){
         this.replies = replies;
     }
 
     @JsonIgnore
-    public List<Reply> getNotDeletedReplies(){
-        List<Reply> r = new ArrayList<>();
-        for(Reply reply : this.getReplies()){
-            if(!reply.isDeleted()){
-                r.add(reply);
+    public List<Comment> getNotDeletedReplies(){
+        List<Comment> r = new ArrayList<>();
+        for(Comment comment : this.getReplies()){
+            if(!comment.isDeleted()){
+                r.add(comment);
             }
         }
         return r;
@@ -111,14 +111,15 @@ public class Comment {
         return c;
     }
 
-    public void deleteReply(String author, Integer replyId) {
-        for(Reply r : this.getReplies()){
-            if(r.getId().equals(replyId)){
-                if(r.getAuthor().equals(author)){
-                    r.delete();
-                    break;
+    public boolean deleteReply(String author, Integer replyId) {
+        for(Comment c : this.getReplies()){
+            if(c.getId().equals(replyId)){
+                if(c.getAuthor().equals(author)){
+                    c.delete();
+                    return true;
                 }
             }
         }
+        return false;
     }
 }

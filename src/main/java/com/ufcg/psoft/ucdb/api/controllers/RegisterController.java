@@ -3,6 +3,7 @@ package com.ufcg.psoft.ucdb.api.controllers;
 import com.ufcg.psoft.ucdb.core.exception.UserRegisteredException;
 import com.ufcg.psoft.ucdb.core.models.User;
 import com.ufcg.psoft.ucdb.api.services.UserService;
+import javax.validation.Valid;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class RegisterController {
 
     @PostMapping("/signup")
     @ResponseBody
-    public ResponseEntity<?> registerUser(@RequestBody User user){
+    public ResponseEntity<?> registerUser(@Valid @RequestBody User user){
         LOGGER.info("Adding new user [" + user.getEmail() + "]");
         try {
             userService.addUser(user);
