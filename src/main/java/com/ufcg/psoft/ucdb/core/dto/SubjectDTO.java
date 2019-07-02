@@ -24,6 +24,9 @@ public class SubjectDTO {
         for(Comment c : comments){
             if(!c.isDeleted()){
                 filteredComments.add(c.getWithoutDeleted());
+            } else {
+                c.setMessage("");
+                filteredComments.add(c);
             }
         }
         return filteredComments;

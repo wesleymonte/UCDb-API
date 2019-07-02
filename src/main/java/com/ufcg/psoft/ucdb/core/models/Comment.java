@@ -91,11 +91,18 @@ public class Comment {
         this.replies = replies;
     }
 
+    public void setMessage(String message){
+        this.msg = message;
+    }
+
     @JsonIgnore
     public List<Comment> getNotDeletedReplies(){
         List<Comment> r = new ArrayList<>();
         for(Comment comment : this.getReplies()){
             if(!comment.isDeleted()){
+                r.add(comment);
+            } else {
+                comment.setMessage("");
                 r.add(comment);
             }
         }
