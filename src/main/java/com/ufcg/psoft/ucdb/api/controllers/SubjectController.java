@@ -32,6 +32,7 @@ public class SubjectController {
     public ResponseEntity<SubjectDTO> getSubjectById(@PathVariable Integer id){
         String author = this.getCurrentUser();
         HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Expose-Header", "Author");
         headers.add("Author", author);
 
         Subject subject = subjectService.getSubject(id);
