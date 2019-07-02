@@ -32,8 +32,7 @@ public class SubjectService {
 
     public Subject getSubject(Integer id) throws SubjectNotFoundException {
         Optional<Subject> subject = subjectRepository.findById(id);
-        return subject.orElseThrow(() -> {
-            throw new SubjectNotFoundException("Subject with id [" + id + "] was not found"); });
+        return subject.orElseThrow(() -> new SubjectNotFoundException("Subject with id [" + id + "] was not found"));
     }
 
     public List<SimpleSubject> searchByName(String substring){
