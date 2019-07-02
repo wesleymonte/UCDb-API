@@ -55,34 +55,37 @@ public class Subject implements Serializable {
         this.commentList.add(comment);
     }
 
-    public void deleteComment(String author, Integer commentId) {
+    public boolean deleteComment(String author, Integer commentId) {
         for(Comment c : this.getCommentList()){
             if(c.getId().equals(commentId)){
                 if(c.getAuthor().equals(author)){
                     c.delete();
-                    break;
+                    return true;
                 }
             }
-            if(c.deleteReply(author, commentId)) break;
+            if(c.deleteReply(author, commentId)) return true;
         }
+        return false;
     }
 
-    public void addReply(Integer commentId, Comment reply){
+    public boolean addReply(Integer commentId, Comment reply){
         for(Comment c : this.commentList){
             if(c.getId().equals(commentId)){
                 c.addReply(reply);
-                break;
+                return true;
             }
         }
+        return false;
     }
 
-    public void removeLike(String user) {
+    public boolean removeLike(String user) {
         List<String> likes = this.getLikes();
         for(int i = 0; i < likes.size(); i++){
             if(likes.get(i).equals(user)){
                 this.likes.remove(i);
-                break;
+                return true;
             }
         }
+        return false;
     }
 }
