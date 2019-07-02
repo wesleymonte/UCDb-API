@@ -1,5 +1,7 @@
 package com.ufcg.psoft.ucdb.api.services;
 
+import com.ufcg.psoft.ucdb.api.exception.CommentNotFoundException;
+import com.ufcg.psoft.ucdb.api.exception.SubjectNotFoundException;
 import com.ufcg.psoft.ucdb.api.repositories.SubjectRepository;
 import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
 import com.ufcg.psoft.ucdb.core.dto.SubjectDTO;
@@ -28,9 +30,10 @@ public class SubjectService {
     @Autowired
     private SubjectRepository subjectRepository;
 
-    public Subject getSubject(Integer id){
+    public Subject getSubject(Integer id) throws SubjectNotFoundException {
         Optional<Subject> subject = subjectRepository.findById(id);
-        return subject.orElse(null);
+        return subject.orElseThrow(() -> {
+            throw new SubjectNotFoundException("Subject with id [" + id + "] was not found"); });
     }
 
     public List<SimpleSubject> searchByName(String substring){
@@ -55,17 +58,23 @@ public class SubjectService {
 
     public Subject deleteComment(Integer subjectId, String author, Integer commentId){
         Subject subject = this.getSubject(subjectId);
-        subject.deleteComment(author, commentId);
-        subject = this.subjectRepository.save(subject);
-        return subject;
+        if(subject.deleteComment(author, commentId)){
+            subject = this.subjectRepository.save(subject);
+            return subject;
+        } else {
+            throw new CommentNotFoundException("Comment with id [" + commentId + "] from Subject[" + subjectId + "] was not found");
+        }
     }
 
     public Subject addReply(Integer subjectId, Integer commentId, String author, CommentDTO commentDTO) {
         Subject subject = this.getSubject(subjectId);
         Comment reply = this.commentFromDTO(author, commentDTO);
-        subject.addReply(commentId, reply);
-        subject = this.subjectRepository.save(subject);
-        return subject;
+        if(subject.addReply(commentId, reply)){
+            subject = this.subjectRepository.save(subject);
+            return subject;
+        } else {
+            throw new CommentNotFoundException("Comment with id [" + commentId + "] from Subject[" + subjectId + "] was not found");
+        }
     }
 
     public Subject addLike(Integer subjectId, String user){
