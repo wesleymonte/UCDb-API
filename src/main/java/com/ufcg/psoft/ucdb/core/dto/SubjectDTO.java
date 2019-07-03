@@ -2,8 +2,10 @@ package com.ufcg.psoft.ucdb.core.dto;
 
 import com.ufcg.psoft.ucdb.core.models.Comment;
 import com.ufcg.psoft.ucdb.core.models.Subject;
+import com.ufcg.psoft.ucdb.core.security.UserSS;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SubjectDTO {
 
@@ -11,12 +13,14 @@ public class SubjectDTO {
     private String name;
     private List<Comment> commentList;
     private Integer likes;
+    private boolean userLike;
 
     public SubjectDTO(Subject subject){
         this.id = subject.getId();
         this.name = subject.getName();
         this.likes = subject.getLikes().size();
         this.commentList = filterComments(subject.getCommentList());
+        this.userLike = checkUserLike(subject.getLikes());
     }
 
     private List<Comment> filterComments(List<Comment> comments){
@@ -28,6 +32,11 @@ public class SubjectDTO {
             filteredComments.add(c.getWithoutDeleted());
         }
         return filteredComments;
+    }
+
+    private boolean checkUserLike(List<String> likes){
+        String user = ((UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        return likes.contains(user);
     }
 
     public Integer getId() {
@@ -44,5 +53,9 @@ public class SubjectDTO {
 
     public Integer getLikes() {
         return likes;
+    }
+
+    public boolean isUserLike() {
+        return userLike;
     }
 }
