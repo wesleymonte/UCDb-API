@@ -28,13 +28,13 @@ public class SubjectController {
         return new ResponseEntity<>(subjectList, HttpStatus.OK);
     }
 
-    @GetMapping("/subject/{id}")
-    public ResponseEntity<SubjectDTO> getSubjectById(@PathVariable Integer id){
+    @GetMapping("/subject/{subjectId}")
+    public ResponseEntity<SubjectDTO> getSubjectById(@PathVariable Integer subjectId){
         String author = this.getCurrentUser();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Author", author);
 
-        Subject subject = subjectService.getSubject(id);
+        Subject subject = subjectService.getSubject(subjectId);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
         return new ResponseEntity<>(subjectDTO, headers, HttpStatus.OK);
     }
