@@ -40,17 +40,19 @@ public class SubjectController {
     }
 
     @PostMapping("/subject/{subjectId}/comment")
-    public ResponseEntity<Subject> addComment(@PathVariable Integer subjectId, @RequestBody CommentDTO commentDTO){
+    public ResponseEntity<SubjectDTO> addComment(@PathVariable Integer subjectId, @RequestBody CommentDTO commentDTO){
         String author = this.getCurrentUser();
         Subject subject = subjectService.addComment(subjectId, author, commentDTO);
-        return new ResponseEntity<>(subject, HttpStatus.OK);
+        SubjectDTO subjectDTO = new SubjectDTO(subject);
+        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
 
     @PostMapping("/subject/{subjectId}/comment/{commentId}")
-    public ResponseEntity<Subject> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody CommentDTO commentDTO){
+    public ResponseEntity<SubjectDTO> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody CommentDTO commentDTO){
         String author = this.getCurrentUser();
         Subject subject = subjectService.addReply(subjectId, commentId, author, commentDTO);
-        return new ResponseEntity<>(subject, HttpStatus.OK);
+        SubjectDTO subjectDTO = new SubjectDTO(subject);
+        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/subject/{subjectId}/comment/{commentId}")
