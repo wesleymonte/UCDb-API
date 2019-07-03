@@ -35,6 +35,14 @@ public class Comment {
         this.deleted = false;
     }
 
+    private Comment(Integer id, String author, String msg, long timestamp, List<Comment> replies){
+        this.id = id;
+        this.author = author;
+        this.msg = msg;
+        this.timestamp = timestamp;
+        this.replies = replies;
+    }
+
     public Comment(){}
 
     public Integer getId() {
@@ -111,10 +119,8 @@ public class Comment {
 
     @JsonIgnore
     public Comment getWithoutDeleted(){
-        Comment c = new Comment(this.author, this.msg);
-        c.setId(this.getId());
-        c.setReplies(this.getNotDeletedReplies());
-        c.setTimestamp(this.getTimestamp());
+        List<Comment> replies = this.getNotDeletedReplies();
+        Comment c = new Comment(getId(), getAuthor(), getMsg(), getTimestamp(), replies);
         return c;
     }
 

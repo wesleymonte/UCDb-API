@@ -82,11 +82,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    @Bean
-//    public JWTAuthenticationFilter getJwtAuthorizationFilter() throws Exception {
-//        final JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter(authenticationManager(), jwtUtil);
-//        jwtAuthenticationFilter.setFilterProcessesUrl("/v1/login");
-//        return jwtAuthenticationFilter;
-//    }
 }

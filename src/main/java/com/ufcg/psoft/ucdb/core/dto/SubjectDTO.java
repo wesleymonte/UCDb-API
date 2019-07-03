@@ -22,12 +22,10 @@ public class SubjectDTO {
     private List<Comment> filterComments(List<Comment> comments){
         List<Comment> filteredComments = new ArrayList<>();
         for(Comment c : comments){
-            if(!c.isDeleted()){
-                filteredComments.add(c.getWithoutDeleted());
-            } else {
+            if(c.isDeleted()){
                 c.setMessage("");
-                filteredComments.add(c);
             }
+            filteredComments.add(c.getWithoutDeleted());
         }
         return filteredComments;
     }
