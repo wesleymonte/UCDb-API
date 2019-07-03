@@ -31,8 +31,13 @@ public class Subject implements Serializable {
 
     public Subject(){}
 
-    public void like(String userId){
-        likes.add(userId);
+    public boolean like(String userId){
+        boolean result = false;
+        if(!likes.contains(userId)){
+            likes.add(userId);
+            result = true;
+        }
+        return result;
     }
 
     public Integer getId() {

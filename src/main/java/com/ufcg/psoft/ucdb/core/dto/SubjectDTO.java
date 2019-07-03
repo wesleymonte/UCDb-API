@@ -10,12 +10,12 @@ public class SubjectDTO {
     private Integer id;
     private String name;
     private List<Comment> commentList;
-    private List<String> likes;
+    private Integer likes;
 
     public SubjectDTO(Subject subject){
         this.id = subject.getId();
         this.name = subject.getName();
-        this.likes = subject.getLikes();
+        this.likes = subject.getLikes().size();
         this.commentList = filterComments(subject.getCommentList());
     }
 
@@ -42,7 +42,7 @@ public class SubjectDTO {
         return commentList;
     }
 
-    public List<String> getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 }

@@ -1,7 +1,9 @@
 package com.ufcg.psoft.ucdb.api.services;
 
 import com.ufcg.psoft.ucdb.api.exception.CommentNotFoundException;
+import com.ufcg.psoft.ucdb.api.exception.LikeNotFoundException;
 import com.ufcg.psoft.ucdb.api.exception.SubjectNotFoundException;
+import com.ufcg.psoft.ucdb.api.exception.UserAlreadyLikedException;
 import com.ufcg.psoft.ucdb.api.repositories.SubjectRepository;
 import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
 import com.ufcg.psoft.ucdb.core.dto.SubjectDTO;
@@ -78,16 +80,23 @@ public class SubjectService {
 
     public Subject addLike(Integer subjectId, String user){
         Subject subject = getSubject(subjectId);
-        subject.like(user);
-        subject = this.subjectRepository.save(subject);
-        return subject;
+        if(subject.like(user)){
+            subject = this.subjectRepository.save(subject);
+            return subject;
+        } else {
+            throw new UserAlreadyLikedException("User[" + user + "] gave like in the subject[" + subjectId +"] previously");
+        }
+
     }
 
     public Subject removeLike(Integer subjectId, String user) {
         Subject subject = getSubject(subjectId);
-        subject.removeLike(user);
-        subject = this.subjectRepository.save(subject);
-        return subject;
+        if(subject.removeLike(user)){
+            subject = this.subjectRepository.save(subject);
+            return subject;
+        } else {
+            throw new LikeNotFoundException("The like from user[" + user + "] has been not found in subject[" + subjectId +" ]");
+        }
     }
 
     public List<SubjectDTO> getRanking(String method){
