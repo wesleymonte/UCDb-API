@@ -15,7 +15,14 @@ Considerando que os alunos buscam compartilhar e receber informações sobre cad
 
 # Architecture
 
-![Architecture](./img/architecture.png)
+<p align="center">
+  <img src="./img/architecture.png" alt="architecture image"/>
+</p>
+
+*  Camada de domínio: Classes do domínio(e.g.: Contato, Produto, Categoria)
+*  Camada de acesso a dados: Classes responsáveis por se comunicar com o banco de dados
+*  Camada de serviço: Classes que reúnem os métodos(serviços) de cada entidade domínio.
+*  Controladores REST: Classes que mapeiam as requisições e os serviços.
 
 # Requirements
 
