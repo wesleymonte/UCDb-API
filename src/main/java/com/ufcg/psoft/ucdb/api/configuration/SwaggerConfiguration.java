@@ -15,7 +15,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static com.ufcg.psoft.ucdb.api.constans.ApiDocumentation.*;
 
 @EnableSwagger2
-@Configuration
 public class SwaggerConfiguration extends WebMvcConfigurationSupport {
 
     private static final String BASE_PACKAGE = "com.ufcg.psoft.ucdb.api.http";
