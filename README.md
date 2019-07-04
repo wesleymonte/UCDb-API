@@ -11,7 +11,7 @@ Considerando que os alunos buscam compartilhar e receber informações sobre cad
 
 ###API Docs
 
-[Swagger](http://35.199.99.162:8080/api/swagger-ui.html) 
+[Swagger](https://app.swaggerhub.com/apis/wesleymonte/UCDb/1.0) 
 
 # Requirements
 
