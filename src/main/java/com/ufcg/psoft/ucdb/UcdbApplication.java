@@ -6,10 +6,8 @@ import com.ufcg.psoft.ucdb.api.repositories.SubjectRepository;
 import com.ufcg.psoft.ucdb.api.services.SubjectService;
 import com.ufcg.psoft.ucdb.core.UcdbController;
 import com.ufcg.psoft.ucdb.core.models.Subject;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +52,7 @@ public class UcdbApplication implements CommandLineRunner{
         try {
             File resource = new ClassPathResource("database.json").getFile();
             String dataBasePath = resource.getPath();
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(dataBasePath));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(dataBasePath), "UTF-8"));
             Type listType = new TypeToken<ArrayList<Subject>>() {}.getType();
             subjects = new Gson().fromJson(bufferedReader, listType);
         } catch (IOException e) {
