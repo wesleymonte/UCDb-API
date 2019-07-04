@@ -11,7 +11,13 @@ Considerando que os alunos buscam compartilhar e receber informações sobre cad
 
 ### API Docs
 
-[Swagger](https://app.swaggerhub.com/apis/wesleymonte/UCDb/1.0) 
+[Swagger](https://app.swaggerhub.com/apis/wesleymonte/UCDb/1.0)
+
+# Architecture
+
+<p align="center">
+  <img src="./imgs/architecture.png" alt="Size Limit CLI" width="738">
+</p>
 
 # Requirements
 
