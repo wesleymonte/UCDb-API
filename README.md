@@ -15,7 +15,7 @@ Considerando que os alunos buscam compartilhar e receber informações sobre cad
 
 # Architecture
 
-![alt text](https://raw.githubusercontent.com/wesleymonte/UCDb-API/master/imgs/architecture.png)
+![Architecture](./img/architecture.png)
 
 # Requirements
 
