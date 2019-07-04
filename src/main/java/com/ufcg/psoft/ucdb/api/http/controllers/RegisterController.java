@@ -1,9 +1,14 @@
-package com.ufcg.psoft.ucdb.api.controllers;
+package com.ufcg.psoft.ucdb.api.http.controllers;
 
+import com.ufcg.psoft.ucdb.api.constans.ApiDocumentation;
 import com.ufcg.psoft.ucdb.core.exception.UserRegisteredException;
 import com.ufcg.psoft.ucdb.core.models.User;
-import com.ufcg.psoft.ucdb.api.services.UserService;
+import com.ufcg.psoft.ucdb.api.http.services.UserService;
 import javax.validation.Valid;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1")
+@Api(ApiDocumentation.Signup.API_DESCRIPTION)
 public class RegisterController {
 
     private static final Logger LOGGER = LogManager.getLogger(RegisterController.class);
@@ -23,7 +29,10 @@ public class RegisterController {
 
     @PostMapping("/signup")
     @ResponseBody
-    public ResponseEntity<?> registerUser(@Valid @RequestBody User user){
+    @ApiOperation(value = ApiDocumentation.Signup.REGISTER_USER)
+    public ResponseEntity<?> registerUser(
+            @ApiParam(value = ApiDocumentation.Signup.USER_BODY)
+            @Valid @RequestBody User user){
         LOGGER.info("Adding new user [" + user.getEmail() + "]");
         try {
             userService.addUser(user);
@@ -31,12 +40,6 @@ public class RegisterController {
         } catch (UserRegisteredException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }
-
-    @GetMapping("/version")
-    @ResponseBody
-    public ResponseEntity<?> getVersion(){
-        return new ResponseEntity<>("0.0.1", HttpStatus.OK);
     }
 
     private class AddUserResponse {

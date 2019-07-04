@@ -41,8 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {
         "/h2/**",
-        "/v1/version",
         "/v1/subject/**",
+        "/v2/api-docs",
+        "/swagger-ui.html",
+        "/webjars/springfox-swagger-ui/**",
+        "/swagger-resources/**"
     };
 
     private static final String[] PUBLIC_MATCHERS_POST = {

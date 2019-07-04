@@ -1,6 +1,7 @@
-package com.ufcg.psoft.ucdb.api.controllers;
+package com.ufcg.psoft.ucdb.api.http.controllers;
 
-import com.ufcg.psoft.ucdb.api.services.SubjectService;
+import com.ufcg.psoft.ucdb.api.constans.ApiDocumentation;
+import com.ufcg.psoft.ucdb.api.http.services.SubjectService;
 import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
 import com.ufcg.psoft.ucdb.core.dto.SubjectDTO;
 import com.ufcg.psoft.ucdb.core.models.SimpleSubject;
@@ -8,6 +9,9 @@ import com.ufcg.psoft.ucdb.core.models.Subject;
 import java.util.List;
 
 import com.ufcg.psoft.ucdb.core.security.UserSS;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,19 +21,26 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1")
+@Api(ApiDocumentation.Subject.API_DESCRIPTION)
 public class SubjectController {
 
     @Autowired
     private SubjectService subjectService;
 
     @GetMapping("/subject")
-    public ResponseEntity<List<SimpleSubject>> getSubject(@RequestParam("search") String subtring){
+    @ApiOperation(value = ApiDocumentation.Subject.SEARCH_OPERATION)
+    public ResponseEntity<List<SimpleSubject>> getSubject(
+            @ApiParam(ApiDocumentation.Subject.SUBSTRING_TO_SEARCH)
+            @RequestParam("search") String subtring){
         List<SimpleSubject> subjectList = subjectService.searchByName(subtring);
         return new ResponseEntity<>(subjectList, HttpStatus.OK);
     }
 
     @GetMapping("/subject/{subjectId}")
-    public ResponseEntity<SubjectDTO> getSubjectById(@PathVariable Integer subjectId){
+    @ApiOperation(ApiDocumentation.Subject.GET_BY_ID_OPERATION)
+    public ResponseEntity<SubjectDTO> getSubjectById(
+            @ApiParam(ApiDocumentation.Subject.SUBJECT_ID)
+            @PathVariable Integer subjectId){
         String author = this.getCurrentUser();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Author", author);
@@ -40,7 +51,12 @@ public class SubjectController {
     }
 
     @PostMapping("/subject/{subjectId}/comment")
-    public ResponseEntity<SubjectDTO> addComment(@PathVariable Integer subjectId, @RequestBody CommentDTO commentDTO){
+    @ApiOperation(ApiDocumentation.Subject.ADD_COMMENT_OPERATION)
+    public ResponseEntity<SubjectDTO> addComment(
+            @ApiParam(ApiDocumentation.Subject.SUBJECT_ID)
+            @PathVariable Integer subjectId,
+            @ApiParam(ApiDocumentation.Subject.COMMENT_ENTITY)
+            @RequestBody CommentDTO commentDTO){
         String author = this.getCurrentUser();
         Subject subject = subjectService.addComment(subjectId, author, commentDTO);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
@@ -48,7 +64,14 @@ public class SubjectController {
     }
 
     @PostMapping("/subject/{subjectId}/comment/{commentId}")
-    public ResponseEntity<SubjectDTO> addReply(@PathVariable Integer subjectId, @PathVariable Integer commentId, @RequestBody CommentDTO commentDTO){
+    @ApiOperation(ApiDocumentation.Subject.ADD_REPLY_OPERATION)
+    public ResponseEntity<SubjectDTO> addReply(
+            @ApiParam(ApiDocumentation.Subject.SUBJECT_ID)
+            @PathVariable Integer subjectId,
+            @ApiParam(ApiDocumentation.Subject.COMMENT_ID)
+            @PathVariable Integer commentId,
+            @ApiParam(ApiDocumentation.Subject.COMMENT_ENTITY)
+            @RequestBody CommentDTO commentDTO){
         String author = this.getCurrentUser();
         Subject subject = subjectService.addReply(subjectId, commentId, author, commentDTO);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
@@ -56,7 +79,12 @@ public class SubjectController {
     }
 
     @DeleteMapping("/subject/{subjectId}/comment/{commentId}")
-    public ResponseEntity<SubjectDTO> deleteComment(@PathVariable Integer subjectId, @PathVariable Integer commentId){
+    @ApiOperation(ApiDocumentation.Subject.DELETE_COMMENT_OPERATION)
+    public ResponseEntity<SubjectDTO> deleteComment(
+            @ApiParam(ApiDocumentation.Subject.SUBJECT_ID)
+            @PathVariable Integer subjectId,
+            @ApiParam(ApiDocumentation.Subject.COMMENT_ID)
+            @PathVariable Integer commentId){
         String author = this.getCurrentUser();
         Subject subject = subjectService.deleteComment(subjectId, author, commentId);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
@@ -64,7 +92,10 @@ public class SubjectController {
     }
 
     @PostMapping("/subject/{subjectId}/like")
-    public ResponseEntity<SubjectDTO> addLike(@PathVariable Integer subjectId){
+    @ApiOperation(ApiDocumentation.Subject.ADD_LIKE_OPERATION)
+    public ResponseEntity<SubjectDTO> addLike(
+            @ApiParam(ApiDocumentation.Subject.SUBJECT_ID)
+            @PathVariable Integer subjectId){
         String user = getCurrentUser();
         Subject subject = this.subjectService.addLike(subjectId, user);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
@@ -72,7 +103,10 @@ public class SubjectController {
     }
 
     @DeleteMapping("/subject/{subjectId}/like")
-    public ResponseEntity<SubjectDTO> removeLike(@PathVariable Integer subjectId){
+    @ApiOperation(ApiDocumentation.Subject.DELETE_LIKE_OPERATION)
+    public ResponseEntity<SubjectDTO> removeLike(
+            @ApiParam(ApiDocumentation.Subject.SUBJECT_ID)
+            @PathVariable Integer subjectId){
         String user = getCurrentUser();
         Subject subject = this.subjectService.removeLike(subjectId, user);
         SubjectDTO subjectDTO = new SubjectDTO(subject);
@@ -80,7 +114,10 @@ public class SubjectController {
     }
 
     @GetMapping("/subject/ranking")
-    public ResponseEntity<List<SubjectDTO>> getRanking(@RequestParam String method){
+    @ApiOperation(ApiDocumentation.Subject.GET_RANKING_OPERATION)
+    public ResponseEntity<List<SubjectDTO>> getRanking(
+            @ApiParam(ApiDocumentation.Subject.RANKING_METHOD)
+            @RequestParam String method){
         List<SubjectDTO> subjectDTOS = this.subjectService.getRanking(method);
         return new ResponseEntity<>(subjectDTOS, HttpStatus.OK);
     }

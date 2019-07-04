@@ -1,10 +1,10 @@
-package com.ufcg.psoft.ucdb.api.services;
+package com.ufcg.psoft.ucdb.api.http.services;
 
 import com.ufcg.psoft.ucdb.api.exception.CommentNotFoundException;
 import com.ufcg.psoft.ucdb.api.exception.LikeNotFoundException;
 import com.ufcg.psoft.ucdb.api.exception.SubjectNotFoundException;
 import com.ufcg.psoft.ucdb.api.exception.UserAlreadyLikedException;
-import com.ufcg.psoft.ucdb.api.repositories.SubjectRepository;
+import com.ufcg.psoft.ucdb.api.http.repositories.SubjectRepository;
 import com.ufcg.psoft.ucdb.core.dto.CommentDTO;
 import com.ufcg.psoft.ucdb.core.dto.SubjectDTO;
 import com.ufcg.psoft.ucdb.core.models.Comment;

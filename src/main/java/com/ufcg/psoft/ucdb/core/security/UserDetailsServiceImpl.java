@@ -1,6 +1,6 @@
 package com.ufcg.psoft.ucdb.core.security;
 
-import com.ufcg.psoft.ucdb.api.repositories.UserRepository;
+import com.ufcg.psoft.ucdb.api.http.repositories.UserRepository;
 import com.ufcg.psoft.ucdb.core.models.User;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;

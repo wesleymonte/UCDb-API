@@ -1,9 +1,9 @@
-package com.ufcg.psoft.ucdb.api.services;
+package com.ufcg.psoft.ucdb.api.http.services;
 
 import com.ufcg.psoft.ucdb.core.UcdbController;
 import com.ufcg.psoft.ucdb.core.exception.UserRegisteredException;
 import com.ufcg.psoft.ucdb.core.models.User;
-import com.ufcg.psoft.ucdb.api.repositories.UserRepository;
+import com.ufcg.psoft.ucdb.api.http.repositories.UserRepository;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,8 +2,7 @@ package com.ufcg.psoft.ucdb;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ufcg.psoft.ucdb.api.repositories.SubjectRepository;
-import com.ufcg.psoft.ucdb.api.services.SubjectService;
+import com.ufcg.psoft.ucdb.api.http.repositories.SubjectRepository;
 import com.ufcg.psoft.ucdb.core.UcdbController;
 import com.ufcg.psoft.ucdb.core.models.Subject;
 
@@ -11,16 +10,13 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.ClassPathResource;
 
 @SpringBootApplication

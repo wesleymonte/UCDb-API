@@ -1,4 +1,4 @@
-package com.ufcg.psoft.ucdb.api.handler;
+package com.ufcg.psoft.ucdb.api.http.handler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;

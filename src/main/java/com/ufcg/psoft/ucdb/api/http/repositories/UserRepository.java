@@ -1,4 +1,4 @@
-package com.ufcg.psoft.ucdb.api.repositories;
+package com.ufcg.psoft.ucdb.api.http.repositories;
 
 import com.ufcg.psoft.ucdb.core.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
