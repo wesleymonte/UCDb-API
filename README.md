@@ -9,7 +9,7 @@ Os usuários irão construir conteúdo sobre as disciplinas de forma colaborativ
 ### Time to token expiration
 Considerando que os alunos buscam compartilhar e receber informações sobre cadeiras que ainda vão pagar ou que estão pagando. Um tempo razoável para realização de todas suas ações então seria algo próximo dos 60 minutos.  Logo, foi definido o tempo de uma hora para expiração do token de acesso.
 
-###API Docs
+### API Docs
 
 [Swagger](https://app.swaggerhub.com/apis/wesleymonte/UCDb/1.0) 
 
