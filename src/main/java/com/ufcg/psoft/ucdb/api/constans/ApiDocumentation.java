@@ -47,12 +47,4 @@ public class ApiDocumentation {
         public static final String AUTHORIZATION_CODE = "The body of the request must specify a valid OAuth2" +
                 "Authorization Code";
     }
-
-    public static class CommonParameters {
-        public static final String USER_CREDENTIALS = "The header of the request must specify a valid Iguassu Token " +
-                "and User Identifier";
-        public static final String OAUTH_CREDENTIALS = "The header of the request must contain the right client id, " +
-                "secret and redirect uri";
-
-    }
 }
